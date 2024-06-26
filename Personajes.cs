@@ -85,3 +85,21 @@ public class JefeCatedra
     public int Energia { get => energia; set => energia = value; }
     public int Salud { get => salud; set => salud = value; }
 }
+
+public class infoPartida{
+    private int danioRealizado;
+    private int danioRecibido;
+
+    private int cantCriticosRealizados;
+
+    public infoPartida(int danReal, int danRecib, int cantCrit)
+    {
+        this.DanioRealizado = danReal;
+        this.DanioRecibido = danRecib;
+        this.CantCriticosRealizados = cantCrit;
+    }
+
+    public int DanioRealizado { get => danioRealizado; set => danioRealizado = value; }
+    public int DanioRecibido { get => danioRecibido; set => danioRecibido = value; }
+    public int CantCriticosRealizados { get => cantCriticosRealizados; set => cantCriticosRealizados = value; }
+}

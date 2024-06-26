@@ -50,19 +50,19 @@ public class FabricaDePersonajes
 
         return indices;
     }
-    public static Queue<JefeCatedra> crearBosses()
+    public static List<JefeCatedra> crearBosses()
     {
-        Queue<JefeCatedra> niveles = new Queue<JefeCatedra>();
+        List<JefeCatedra> niveles = new List<JefeCatedra>();
         int[] indices = indicesAleatorios();
 
-        for (int i = 0; i < 9; i++)
+        for (int i = 0; i < 10; i++)
         {
             string nombre = nombres[numeroAleatorio(0, 20)];
             int edad = numeroAleatorio(25, 71);
             Materia materia = materias[indices[i]];
             int energia = 0;
             int salud = numeroAleatorio(100, 301);
-            niveles.Enqueue(new JefeCatedra(nombre, edad, materia, energia, salud));
+            niveles.Add(new JefeCatedra(nombre, edad, materia, energia, salud));
         }
         return niveles;
     }

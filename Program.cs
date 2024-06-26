@@ -6,13 +6,14 @@ Console.Clear();
 pantallaPrincipal.mostrarMenu();
 Console.WriteLine("Creando jefes de cátedra...");
 
-        Queue<JefeCatedra> bosses = FabricaDePersonajes.crearBosses();
+        List<JefeCatedra> bosses = FabricaDePersonajes.crearBosses();
 
         Console.WriteLine("Lista de jefes de cátedra:");
         while (bosses.Count > 0)
         {
-            JefeCatedra jefe = bosses.Dequeue();
-            Console.WriteLine($"Nombre: {jefe.Nombre}, Edad: {jefe.Edad}, Materia: {jefe.Materia.Nombre}, ulti: {jefe.Materia.AtaqueEspecial}Energía: {jefe.Energia}, Salud: {jefe.Salud}");
+            JefeCatedra jefe = bosses[0];
+            Console.WriteLine($"Nombre: {jefe.Nombre}, Edad: {jefe.Edad}, Materia: {jefe.Materia.Nombre}, ulti: {jefe.Materia.AtaqueEspecial} Energía: {jefe.Energia}, Salud: {jefe.Salud}");
+            bosses.RemoveAt(0);
         }
 
 Console.WriteLine("Creando estudiante...");
