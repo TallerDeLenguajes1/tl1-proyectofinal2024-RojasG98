@@ -1,55 +1,77 @@
 ﻿
 using Personajes;
 using Pantallas;
-Ventana ventana = new Ventana(200,45,ConsoleColor.Blue);
+
+//inicio del juego
+//mostramos la pantalla principal
+Ventana ventana = new Ventana(150, 30);
 Console.Clear();
+//leemos la tecla de las opciones del menu
+char tecla;
+int bandera = 0;
 pantallaPrincipal.mostrarMenu();
-Console.WriteLine("Creando jefes de cátedra...");
+do
+{
+    tecla = Console.ReadKey().KeyChar;
+    Console.Clear();
+    if (tecla == '1' || tecla == '2' || tecla == '3')
+    {
+        bandera = 1;
+    }
+    else
+    {
+        Console.Clear();
+        Console.SetCursorPosition(60, 35); // Establecer la posición del cursor para el mensaje
+        Console.WriteLine("Ingrese una opcion valida!");
+        Thread.Sleep(2000);
+    }
+} while (bandera != 1);
+//Vemos si existe el archivo de los personajes si no existe lo creamos sino los leemos
+var archivos = new PersonajesJson();
+string archivoJefes = "./json/jefes.json";
+string archivoJugador = "./json/jugador.json";
+Estudiante jugador = null;
+List<JefeCatedra> jefes = null;
 
-        List<JefeCatedra> bosses = FabricaDePersonajes.crearBosses();
-
-        Console.WriteLine("Lista de jefes de cátedra:");
-        while (bosses.Count > 0)
+switch (tecla)
+{
+    case '1':
+        if (!archivos.Existe(archivoJefes) && !archivos.Existe(archivoJugador))
         {
-            JefeCatedra jefe = bosses[0];
-            Console.WriteLine($"Nombre: {jefe.Nombre}, Edad: {jefe.Edad}, Materia: {jefe.Materia.Nombre}, ulti: {jefe.Materia.AtaqueEspecial} Energía: {jefe.Energia}, Salud: {jefe.Salud}");
-            bosses.RemoveAt(0);
+            jefes = FabricaDePersonajes.crearBosses();
+            archivos.GuardarJefes(jefes, archivoJefes); 
+            jugador = FabricaDePersonajes.leerDatosJugador();
+            archivos.GuardarJugador(jugador, archivoJugador);
         }
-
-Console.WriteLine("Creando estudiante...");
-        DatosEstudiante datosLeidos;
-        string nombre;
-        int respuesta,edad;
-        bool esNumeroValido;
-        do
+        else
         {
-            Console.WriteLine("Ingrese Su nombre");
-            nombre = Console.ReadLine();
-            Console.WriteLine("Ingrese Su nombre");
-            do
+            //ya existia una partida por lo que borramos ese json y creamos uno nuevo.
+            try
             {
-                Console.WriteLine("Ingrese su edad: ");
-                esNumeroValido = Int32.TryParse(Console.ReadLine(), out edad);
-
-                if (!esNumeroValido)
-                {
-                    Console.WriteLine("Por favor, ingrese un número válido.");
-                }
-            } while (!esNumeroValido);
-
-            Console.WriteLine("Esta seguro que estos son sus datos?");
-            Console.WriteLine("Nombre: "+nombre);
-            Console.WriteLine("Edad: "+edad);
-            Console.WriteLine("0.SI    1.NO");
-            do
+                File.Delete(archivoJugador);
+                File.Delete(archivoJefes);
+                //Volvemos a crear los bosses y pedimos datos nuevamente
+                jefes = FabricaDePersonajes.crearBosses();
+                archivos.GuardarJefes(jefes, archivoJefes); 
+                jugador = FabricaDePersonajes.leerDatosJugador();
+                archivos.GuardarJugador(jugador, archivoJugador);
+            }
+            catch (Exception error)
             {
-                esNumeroValido = Int32.TryParse(Console.ReadLine(),out respuesta);
-            } while (!esNumeroValido && respuesta >1 && respuesta < 0);
-        } while (respuesta == 1);
-        datosLeidos = new DatosEstudiante(nombre,edad);
+                Console.WriteLine($"Error al crear nueva partida{error.Message}");
+            }
+        }
+        break;
+    case '2':
+        jefes = archivos.LeerJefes(archivoJefes);
+        jugador = archivos.LeerJugador(archivoJugador);
+        break;
+    case '3':
+        break;
+}
+Console.Clear();
+if (jugador != null)
+{
+    pantallaDialogos.mostrarDialogos1(jugador);
+}
 
-        Estudiante jugador = FabricaDePersonajes.crearEstudiante(datosLeidos);
-
-        Console.WriteLine($"Nombre: {jugador.Datos.Nombre}\n Edad: {jugador.Datos.Edad}"); 
-        Console.WriteLine($"Estres: {jugador.Estres}\n Motivacion: {jugador.Motivacion}\n Conocimiento: {jugador.Conocimiento}\n Energia: {jugador.Energia}\n Salud: {jugador.Salud} \n Vidas: {jugador.Vidas}");
-        Console.WriteLine("Proceso completado.");

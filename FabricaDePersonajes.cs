@@ -76,4 +76,41 @@ public class FabricaDePersonajes
         int vidas  = 3;
         return new Estudiante(datosJugador,estres,motivacion,conocimiento,energia,salud,vidas);
     }
+
+    public static Estudiante leerDatosJugador(){
+            Estudiante jugador;
+            DatosEstudiante datosLeidos;
+            string nombre;
+            int respuesta, edad;
+            bool esNumeroValido;
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("Ingrese Su nombre");
+                nombre = Console.ReadLine();
+                do
+                {
+                    Console.WriteLine("Ingrese su edad: ");
+                    esNumeroValido = Int32.TryParse(Console.ReadLine(), out edad);
+
+                    if (!esNumeroValido)
+                    {
+                        Console.WriteLine("Por favor, ingrese un número válido.");
+                    }
+                } while (!esNumeroValido);
+                Console.Clear();
+                Console.WriteLine("Esta seguro que estos son sus datos?");
+                Console.WriteLine("Nombre: " + nombre);
+                Console.WriteLine("Edad: " + edad);
+                Console.WriteLine("0.SI    1.NO");
+                do
+                {
+                    esNumeroValido = Int32.TryParse(Console.ReadLine(), out respuesta);
+                } while (!esNumeroValido && respuesta > 1 && respuesta < 0);
+            } while (respuesta == 1);
+            datosLeidos = new DatosEstudiante(nombre, edad);
+            jugador = FabricaDePersonajes.crearEstudiante(datosLeidos);
+            return jugador;
+    }
+
 }
