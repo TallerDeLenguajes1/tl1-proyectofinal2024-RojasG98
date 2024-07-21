@@ -73,5 +73,6 @@ Console.Clear();
 if (jugador != null)
 {
     pantallaDialogos.mostrarDialogos1(jugador);
+    pantallaDialogos.presentarNiveles(jefes);
 }
 
