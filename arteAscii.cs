@@ -149,20 +149,20 @@ public class pantallaDialogos
                   ";
     private static string combate = @"
          ____________________________________________________________________________________________________________________________________
-        |                                                                                                                                    |
-        |                                                                                                                                    |
-        |                                                                                                                                    |
-        |                                                                                                                                    |
-        |                                                                                                                                    |
-        |                                                                                                                                    |
-        |                                                                                                                                    |
-        |                                                                                                                                    |
-        |                                                                                                                                    |
-        |                                                                                                                                    |
-        |                                                                                                                                    |
-        |                                                                                                                                    |
-        |                                                                                                                                    |
-        |                                                                                                                                    |
+        |                                                                                                /^^^^^^^\                           |
+        |                                                                                                | ~   ~ |                           |
+        |                                                                                                | () () |                           |
+        |                                                                                                 \  ^  /                            |
+        |                                                                                                  |||||                             |
+        |                                                                                                 / ||| \                            |
+        |                                                                                                /  |||  \                           |
+        |                       &&&&&&&                                                                 |   |||   |                          |
+        |                      &/     \&                                                                 \_______/                           |
+        |                     <|       |>                                                                                                    |
+        |                       \_____/                                                                                                      |
+        |                       /|||||\                                                                                                      |
+        |                      /|||||||\                                                                                                     |
+        |                     / ||||| ||\                                                                                                    |
         |____________________________________________________________________________________________________________________________________|
         |                                                                                           |                                        |
         |                                                                                           |                                        |
@@ -269,63 +269,66 @@ public class pantallaDialogos
         Console.Clear();
         Console.Write(combate);
         Ataques[] opciones = ataques.ToArray();
+        Console.SetCursorPosition(16, 19);
+        Console.Write("0 - " + opciones[0].Nombre);
+        Console.SetCursorPosition(16, 20);
+        Console.Write("Daño: " + opciones[0].Dano);
+        Console.SetCursorPosition(16, 21);
+        Console.Write("Energia: " + -opciones[0].CostoEnergía);
+        Console.SetCursorPosition(16, 22);
+        Console.Write("Estres: " + opciones[0].AumentoEstres);
 
-        if (jugador.Energia != 100)
-        {
-            Console.SetCursorPosition(16, 19);
-            Console.Write("0 - " + opciones[0].Nombre);
-            Console.SetCursorPosition(16, 20);
-            Console.Write("Daño: " + opciones[0].Dano);
-            Console.SetCursorPosition(16, 21);
-            Console.Write("Energia: " + -opciones[0].CostoEnergía);
-            Console.SetCursorPosition(16, 22);
-            Console.Write("Estres: " + opciones[0].AumentoEstres);
+        Console.SetCursorPosition(64, 19);
+        Console.Write("1 - " + opciones[1].Nombre);
+        Console.SetCursorPosition(64, 20);
+        Console.Write("Daño: " + opciones[1].Dano);
+        Console.SetCursorPosition(64, 21);
+        Console.Write("Energia: " + -opciones[1].CostoEnergía);
+        Console.SetCursorPosition(64, 22);
+        Console.Write("Estres: " + opciones[1].AumentoEstres);
 
-            Console.SetCursorPosition(64, 19);
-            Console.Write("1 - " + opciones[1].Nombre);
-            Console.SetCursorPosition(64, 20);
-            Console.Write("Daño: " + opciones[1].Dano);
-            Console.SetCursorPosition(64, 21);
-            Console.Write("Energia: " + -opciones[1].CostoEnergía);
-            Console.SetCursorPosition(64, 22);
-            Console.Write("Estres: " + opciones[1].AumentoEstres);
+        Console.SetCursorPosition(16, 24);
+        Console.Write("2 - " + opciones[2].Nombre);
+        Console.SetCursorPosition(16, 25);
+        Console.Write("Daño: " + opciones[2].Dano);
+        Console.SetCursorPosition(16, 26);
+        Console.Write("Energia: " + -opciones[2].CostoEnergía);
+        Console.SetCursorPosition(16, 27);
+        Console.Write("Estres: " + opciones[2].AumentoEstres);
 
-            Console.SetCursorPosition(16, 24);
-            Console.Write("2 - " + opciones[2].Nombre);
-            Console.SetCursorPosition(16, 25);
-            Console.Write("Daño: " + opciones[2].Dano);
-            Console.SetCursorPosition(16, 26);
-            Console.Write("Energia: " + -opciones[2].CostoEnergía);
-            Console.SetCursorPosition(16, 27);
-            Console.Write("Estres: " + opciones[2].AumentoEstres);
+        Console.SetCursorPosition(64, 24);
+        Console.Write("3 - " + opciones[3].Nombre);
+        Console.SetCursorPosition(64, 25);
+        Console.Write("Daño: " + opciones[3].Dano);
+        Console.SetCursorPosition(64, 26);
+        Console.Write("Energia: " + -opciones[3].CostoEnergía);
+        Console.SetCursorPosition(64, 27);
+        Console.Write("Estres: " + opciones[3].AumentoEstres);
 
-            Console.SetCursorPosition(64, 24);
-            Console.Write("3 - " + opciones[3].Nombre);
-            Console.SetCursorPosition(64, 25);
-            Console.Write("Daño: " + opciones[3].Dano);
-            Console.SetCursorPosition(64, 26);
-            Console.Write("Energia: " + -opciones[3].CostoEnergía);
-            Console.SetCursorPosition(64, 27);
-            Console.Write("Estres: " + opciones[3].AumentoEstres);
-        }
     }
 
     public static void mostrarStatsJugador(Estudiante Jugador)
     {
         Console.SetCursorPosition(105, 17);
-        Console.Write("Stats de "+Jugador.Datos.Nombre);
+        Console.Write("Stats de " + Jugador.Datos.Nombre);
         Console.SetCursorPosition(105, 19);
-        Console.Write("Vidas: "+Escribir.vidas(Jugador.Vidas));
+        Console.Write("Vidas: " + Escribir.vidas(Jugador.Vidas));
         Console.SetCursorPosition(105, 20);
-        Console.Write("Salud: "+Escribir.BarraDeStat(Jugador.Salud)+Jugador.Salud);
+        Console.Write("Salud: " + Escribir.BarraDeStat(Jugador.Salud) + Jugador.Salud);
         Console.SetCursorPosition(105, 21);
-        Console.Write("Energia: "+Escribir.BarraDeStat(Jugador.Energia)+Jugador.Energia);
+        Console.Write("Energia: " + Escribir.BarraDeStat(Jugador.Energia) + Jugador.Energia);
         Console.SetCursorPosition(105, 22);
-        Console.Write("Estres: "+Escribir.BarraDeStat(Jugador.Estres)+Jugador.Estres);
+        Console.Write("Estres: " + Escribir.BarraDeStat(Jugador.Estres) + Jugador.Estres);
         Console.SetCursorPosition(105, 23);
-        Console.Write("Motivacion "+Escribir.BarraDeStat(Jugador.Motivacion)+Jugador.Motivacion);
+        Console.Write("Motivacion " + Escribir.BarraDeStat(Jugador.Motivacion) + Jugador.Motivacion);
         Console.SetCursorPosition(105, 24);
-        Console.Write("Conocimiento: "+Escribir.BarraDeStat(Jugador.Conocimiento)+Jugador.Conocimiento);
+        Console.Write("Conocimiento: " + Escribir.BarraDeStat(Jugador.Conocimiento) + Jugador.Conocimiento);
+    }
+
+    public static void mostrarVidaBoss(JefeCatedra jefe)
+    {
+        Console.SetCursorPosition(95, 11);
+        Console.Write(jefe.Nombre + ": " + Escribir.BarraDeStat(jefe.Salud) + jefe.Salud);
     }
 }
 
@@ -337,8 +340,9 @@ public class Escribir
         Console.SetCursorPosition(left, altura);
         Console.Write(mensaje);
     }
-    public static string BarraDeStat(int Stat){
-        int unidades = Stat /10;
+    public static string BarraDeStat(int Stat)
+    {
+        int unidades = Stat / 10;
         string barra = "";
         for (int i = 0; i < unidades; i++)
         {
@@ -347,12 +351,21 @@ public class Escribir
         return barra;
     }
 
-    public static string vidas(int vidas){
+    public static string vidas(int vidas)
+    {
         string corazones = "";
         for (int i = 0; i < vidas; i++)
         {
             corazones += "♥ ";
         }
         return corazones;
+    }
+    public static void borrar(int cantEspacios, int altura, int posX)
+    {
+        for (int i = 0; i <= cantEspacios; i++)
+        {
+            Console.SetCursorPosition(posX, altura);
+            Console.Write(new string(' ', cantEspacios));
+        }
     }
 }
