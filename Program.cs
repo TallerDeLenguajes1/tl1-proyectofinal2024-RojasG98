@@ -69,10 +69,33 @@ switch (tecla)
     case '3':
         break;
 }
+/*
 Console.Clear();
 if (jugador != null)
 {
     pantallaDialogos.mostrarDialogos1(jugador);
     pantallaDialogos.presentarNiveles(jefes);
 }
+*/
+Console.Clear();
 
+bandera = 0;
+List<Ataques> ataques = new List<Ataques>();
+ataques = Combate.basicosDelTurno();
+do
+{
+    pantallaDialogos.mostrarAtaques(jugador,ataques);
+    pantallaDialogos.mostrarStatsJugador(jugador);
+    tecla = Console.ReadKey().KeyChar;
+    if (tecla == '1' || tecla == '2' || tecla == '3' || tecla == '0')
+    {
+        bandera = 1;
+    }
+    else
+    {
+        Console.Clear();
+        Console.SetCursorPosition(60, 35); // Establecer la posición del cursor para el mensaje
+        Console.WriteLine("Ingrese una opcion valida!");
+        Thread.Sleep(1000);
+    }
+} while (bandera != 1);

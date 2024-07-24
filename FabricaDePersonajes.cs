@@ -31,17 +31,17 @@ public class FabricaDePersonajes
         return value;
     }
     //creo un arreglo con indices aleatorios para poder crear los niveles con una materia en especifico;
-    public static int[] indicesAleatorios()
+    public static int[] indicesAleatorios(int cantNumeros,int totalOpciones)
     {
         var random = new Random();
-        int[] indices = new int[10];
+        int[] indices = new int[cantNumeros];
         List<int> numerosDisponibles = new List<int>();
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < totalOpciones; i++)
         {
             numerosDisponibles.Add(i);
         }
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < cantNumeros; i++)
         {
             int index = random.Next(numerosDisponibles.Count);
             indices[i] = numerosDisponibles[index];
@@ -53,7 +53,7 @@ public class FabricaDePersonajes
     public static List<JefeCatedra> crearBosses()
     {
         List<JefeCatedra> niveles = new List<JefeCatedra>();
-        int[] indices = indicesAleatorios();
+        int[] indices = indicesAleatorios(10,10);
 
         for (int i = 0; i < 10; i++)
         {
@@ -71,7 +71,7 @@ public class FabricaDePersonajes
         int estres = 0;
         int motivacion = 100;
         int conocimiento = numeroAleatorio(0,31);
-        int energia = 100;
+        int energia = 50;
         int salud = 100;
         int vidas  = 3;
         return new Estudiante(datosJugador,estres,motivacion,conocimiento,energia,salud,vidas);
