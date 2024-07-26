@@ -27,31 +27,31 @@ public static class AtaquesBasicos
 {
     public static readonly Ataques[] BasicosEstudiante = new Ataques[]
     {
-        new Ataques("Noche de Estudio", 15, 10, 10),
-        new Ataques("Siesta Recuperadora", 0, -50, -10),
-        new Ataques("Cascada de monster", 0, -10, 5),
-        new Ataques("Entrega de Proyecto", 20, 10, 15),
-        new Ataques("Grupo de estudio", 10, 5, 12),
-        new Ataques("Consulta con el Profesor", 15, 10, 0),
-        new Ataques("Charla Motivacional", 5, 5, -10),
-        new Ataques("Apuntes prestados", 15, 5, 5),
-        new Ataques("Papas y cerveza",0,-20,-20),
-        new Ataques("Gira con los pibes", 0, -40, -50)
+        new Ataques("Noche de Estudio", 15, 10, 20),
+        new Ataques("Siesta Recuperadora", 0, -50, -20),
+        new Ataques("Cascada de monster", 0, -10, 15),
+        new Ataques("Entrega de Proyecto", 20, 10, 25),
+        new Ataques("Grupo de estudio", 10, 8, 12),
+        new Ataques("Consulta con el Profesor", 15, 10, 5),
+        new Ataques("Charla Motivacional", 5, 5, -15),
+        new Ataques("Apuntes prestados", 15, 5, 10),
+        new Ataques("Papas y cerveza",0,-20,-30),
+        new Ataques("Gira con los pibes", 0, 30, -40)
     };
 
     public static readonly Ataques[] BasicosProfesor = new Ataques[]
     {
         new Ataques("Pregunta Capciosa", 8, 0, 0),
-        new Ataques("Corrección Estricta", 15, 0, 0),
-        new Ataques("Evaluativo semanal", 10, 0, 0),
-        new Ataques("Pregunta Trampa", 8, 0, 0),
-        new Ataques("Tema no dado", 20, 0, 0),
+        new Ataques("Corrección Estricta", 18, 0, 0),
+        new Ataques("Evaluativo semanal", 12, 0, 0),
+        new Ataques("Pregunta Trampa", 10, 0, 0),
+        new Ataques("Tema no dado", 22, 0, 0),
         new Ataques("Practico imposible", 7, 0, 0),
-        new Ataques("Semana de parciales", 10, 0, 0),
+        new Ataques("Semana de parciales", 14, 0, 0),
         new Ataques("Teoria aburrida", 9, 0, 0),
         new Ataques("Cancelacion de clase", 5, 0, 0),
         new Ataques("Cancelacion de consulta", 4, 0, 0),
-        new Ataques("Problema imposible", 17, 0, 0)
+        new Ataques("Problema imposible", 20, 0, 0)
     };
 }
 
@@ -59,10 +59,10 @@ public static class AtaquesEspeciales
 {
     public static readonly Ataques[] UltiEstudiante = new Ataques[]
     {
-        new Ataques("Aprobada epica", 250, 100, 0),
-        new Ataques("Trabajo Práctico Impecable", 250, 100, 0),
-        new Ataques("Maratón de Tutoriales", 250, 100, 0),
-        new Ataques("Llevar la materia al dia", 500, 100, 0)
+        new Ataques("Aprobada epica", 100, 100, 0),
+        new Ataques("Trabajo Práctico Impecable", 100, 100, 0),
+        new Ataques("Maratón de Tutoriales", 100, 100, 0),
+        new Ataques("Llevar la materia al dia", 150, 100, 0)
     };
     public static readonly Ataques[] UltiProfesor = new Ataques[]
     {
@@ -103,6 +103,8 @@ public class Combate
 
     public static void realizarAtaque(Ataques ataque, Estudiante estudiante, JefeCatedra boss, int nivel)
     {
+        pantallaDialogos.escribiryborrar(estudiante.Datos.Nombre + " uso " + ataque.Nombre, 14);
+        
         if (estudiante.Energia - ataque.CostoEnergía <= 0)
         {
             estudiante.Energia = 0;
@@ -122,6 +124,7 @@ public class Combate
 
         }
         int danoRealizado = calculoDano(ataque.Dano, nivel, estudiante.Estres);
+        pantallaDialogos.escribiryborrar(boss.Nombre + " recibio " + danoRealizado + "de daño" , 14);
         if (boss.Salud - danoRealizado < 0)
         {
             boss.Salud = 0;
@@ -150,20 +153,44 @@ public class Combate
 
     public static void recibirAtaque(Estudiante estudiante, JefeCatedra boss, int nivel)
     {
-        int ataqueAleatorio = FabricaDePersonajes.numeroAleatorio(0, 10);
-        int danoBoss = calculoDano(AtaquesBasicos.BasicosProfesor[ataqueAleatorio].Dano, nivel, 0);
-        if (estudiante.Salud - danoBoss <= 0)
+        int ataqueAleatorio; 
+        int damageBoss = 0;
+        if (estudiante.Estres != 100)
+        {
+            ataqueAleatorio= FabricaDePersonajes.numeroAleatorio(0, 10);
+            damageBoss = calculoDano(AtaquesBasicos.BasicosProfesor[ataqueAleatorio].Dano, nivel, 0);
+            Console.SetCursorPosition(0, 0);
+            pantallaDialogos.escribiryborrar(boss.Nombre + " uso " + AtaquesBasicos.BasicosProfesor[ataqueAleatorio].Nombre, 4);
+
+        }
+        else
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                if (string.Equals(AtaquesEspeciales.UltiProfesor[i].Nombre, boss.Materia.AtaqueEspecial))
+                {
+                    ataqueAleatorio = i;
+                    damageBoss = calculoDano(AtaquesEspeciales.UltiProfesor[ataqueAleatorio].Dano, nivel, 0);
+                }
+            }
+            Console.SetCursorPosition(0, 0);
+            pantallaDialogos.escribiryborrar("Estas al maximo de estres!!!",4);
+            pantallaDialogos.escribiryborrar("Recibiras un ataque especial",4);
+            pantallaDialogos.escribiryborrar(boss.Nombre + " usara " + boss.Materia.AtaqueEspecial, 4);
+            pantallaDialogos.escribiryborrar("Recibiste "+damageBoss+"puntos de daño", 4);
+        }
+
+        if (estudiante.Salud - damageBoss <= 0)
         {
             estudiante.Salud = 100;
             estudiante.Vidas--;
         }
         else
         {
-            estudiante.Salud -= danoBoss;
+            estudiante.Salud -= damageBoss;
 
         }
-        Console.SetCursorPosition(0, 0);
-        pantallaDialogos.escribiryborrar(boss.Nombre + " uso " + AtaquesBasicos.BasicosProfesor[ataqueAleatorio].Nombre, 4);
+        
     }
 
     public static List<Ataques> basicosDelTurno(Estudiante estudiante)

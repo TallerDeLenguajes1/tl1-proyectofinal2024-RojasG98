@@ -3,8 +3,10 @@ using System.ComponentModel.Design;
 using System.Runtime.CompilerServices;
 using Personajes;
 using System.Security.Cryptography.X509Certificates;
+using NAudio.Wave;
 
 namespace Pantallas;
+
 
 public class Ventana
 {
@@ -88,11 +90,16 @@ public class pantallaDialogos
 {
     public static void escribiryborrar(string mensaje, int altura)
     {
-
+        var speakSound = new AudioFileReader(@"C:\Users\rojas\TallerLenguaje1\tl1-proyectofinal2024-RojasG98\audio\speakingSound.wav");
+        var playSpeakSound = new WaveOutEvent();
+        playSpeakSound.Init(speakSound);
+        
         for (int i = 0; i <= mensaje.Length; i++)
         {
+            speakSound.CurrentTime = TimeSpan.FromSeconds(0);
             Console.SetCursorPosition(60, altura);
             Console.Write(mensaje.Substring(0, i)); // Mostrar el string progresivamente
+            playSpeakSound.Play();
             Thread.Sleep(50);
         }
         Thread.Sleep(1500);
@@ -101,13 +108,19 @@ public class pantallaDialogos
             Console.SetCursorPosition(60, altura);
             Console.Write(new string(' ', mensaje.Length));
         }
+        playSpeakSound.Dispose();
     }
     public static void escribir(string mensaje, int altura)
     {
+        var speakSound = new AudioFileReader(@"C:\Users\rojas\TallerLenguaje1\tl1-proyectofinal2024-RojasG98\audio\speakingSound.wav");
+        var playSpeakSound = new WaveOutEvent();
+        playSpeakSound.Init(speakSound);
         for (int i = 0; i <= mensaje.Length; i++)
         {
+            speakSound.CurrentTime = TimeSpan.FromSeconds(0);
             Console.SetCursorPosition(60, altura);
             Console.Write(mensaje.Substring(0, i)); // Mostrar el string progresivamente
+            playSpeakSound.Play();
             Thread.Sleep(50);
         }
     }
@@ -125,8 +138,7 @@ public class pantallaDialogos
                                          / /  |        |  \ \
                                         ( <   |        |   > )
                                          \ \  |        |  / /
-                                          \ \ |________| / /
-    ";
+                                          \ \ |________| / /";
 
     private static string cielo1 = @"
               .
@@ -147,66 +159,73 @@ public class pantallaDialogos
 .-'  (_.'          .')                    `(    )  )) (_.'          .')                    `(    )  )) (_.'          .')                    `(    )  
                   (_  )                     ` __.:'                (_  )                     ` __.:'                (_  )                     ` __.:'  
                   ";
-    private static string combate = @"
-         ____________________________________________________________________________________________________________________________________
-        |                                                                                                /^^^^^^^\                           |
-        |                                                                                                | ~   ~ |                           |
-        |                                                                                                | () () |                           |
-        |                                                                                                 \  ^  /                            |
-        |                                                                                                  |||||                             |
-        |                                                                                                 / ||| \                            |
-        |                                                                                                /  |||  \                           |
-        |                       &&&&&&&                                                                 |   |||   |                          |
-        |                      &/     \&                                                                 \_______/                           |
-        |                     <|       |>                                                                                                    |
-        |                       \_____/                                                                                                      |
-        |                       /|||||\                                                                                                      |
-        |                      /|||||||\                                                                                                     |
-        |                     / ||||| ||\                                                                                                    |
-        |____________________________________________________________________________________________________________________________________|
-        |                                                                                           |                                        |
-        |                                                                                           |                                        |
-        |                                                                                           |                                        |
-        |                                                                                           |                                        |
-        |                                                                                           |                                        |
-        |                                                                                           |                                        |
-        |                                                                                           |                                        |
-        |                                                                                           |                                        |
-        |                                                                                           |                                        |
-        |                                                                                           |                                        |
-        |                                                                                           |                                        |
-        _____________________________________________________________________________________________________________________________________";
-    private static string pantallaNivel = @"
-                                                                                                                                                     
-        _____________________________________________________________________________________________________________________________________
-        |::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::|
-        |::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::|
-        |::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::|
-        |::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::|
-        |::::::::::::::::::::::                                                                                        ::::::::::::::::::::::|
-        |::::::::::::::::::::::                                                                                        ::::::::::::::::::::::|
-        |::::::::::::::::::::::                                                                                        ::::::::::::::::::::::|
-        |::::::::::::::::::::::                                                                                        ::::::::::::::::::::::|
-        |::::::::::::::::::::::                                                                                        ::::::::::::::::::::::|
-        |::::::::::::::::::::::                                                                                        ::::::::::::::::::::::|
-        |::::::::::::::::::::::                                                                                        ::::::::::::::::::::::|
-        |::::::::::::::::::::::                                                                                        ::::::::::::::::::::::|
-        |::::::::::::::::::::::                                                                                        ::::::::::::::::::::::|
-        |::::::::::::::::::::::                                                                                        ::::::::::::::::::::::|
-        |::::::::::::::::::::::                                                                                        ::::::::::::::::::::::|
-        |::::::::::::::::::::::                                                                                        ::::::::::::::::::::::|
-        |::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::|
-        |::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::|
-        |::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::|
-        |::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::|
-        _____________________________________________________________________________________________________________________________________        ";
+    private static string combate =
+    @" __________________________________________________________________________________________________________________________________________________"+ "\n" +
+    @"|                                                                                                /^^^^^^^\                                         |"+"\n" +
+    @"|                                                                                                | ~   ~ |                                         |"+"\n" +
+    @"|                                                                                                | () () |                                         |"+"\n" +
+    @"|                                                                                                 \  ^  /                                          |"+"\n" +
+    @"|                                                                                                  |||||                                           |"+"\n" +
+    @"|                                                                                                 / ||| \                                          |"+"\n" +
+    @"|                                                                                                /  |||  \                                         |"+"\n" +
+    @"|                       &&&&&&&                                                                 |   |||   |                                        |"+"\n" +
+    @"|                      &/     \&                                                                 \_______/                                         |"+"\n" +
+    @"|                     <|       |>                                                                                                                  |"+"\n" +
+    @"|                       \_____/                                                                                                                    |"+"\n" +
+    @"|                       /|||||\                                                                                                                    |"+"\n" +
+    @"|                      /|||||||\                                                                                                                   |"+"\n" +
+    @"|                     / ||||| ||\                                                                                                                  |"+"\n" +
+    @"|__________________________________________________________________________________________________________________________________________________|"+"\n" +
+    @"|                                                                                                         |                                        |"+"\n" +
+    @"|                                                                                                         |                                        |"+"\n" +
+    @"|                                                                                                         |                                        |"+"\n" +
+    @"|                                                                                                         |                                        |"+"\n" +
+    @"|                                                                                                         |                                        |"+"\n" +
+    @"|                                                                                                         |                                        |"+"\n" +
+    @"|                                                                                                         |                                        |"+"\n" +
+    @"|                                                                                                         |                                        |"+"\n" +
+    @"|                                                                                                         |                                        |"+"\n" +
+    @"|                                                                                                         |                                        |"+"\n" +
+    @"|                                                                                                         |                                        |"+"\n" +
+    @" __________________________________________________________________________________________________________________________________________________";
+    private static string pantallaNivel =
+    @"____________________________________________________________________________________________________________________________________________________"+"\n" +
+    @"|:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::|"+"\n" +
+    @"|:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::|"+"\n" +
+    @"|:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::|"+"\n" +
+    @"|:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::|"+"\n" +
+    @"|:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::|"+"\n" +
+    @"|:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::|"+"\n" +
+    @"|::::::::::::::::::::::                                                                                                       ::::::::::::::::::::::|"+"\n" +
+    @"|::::::::::::::::::::::                                                                                                       ::::::::::::::::::::::|"+"\n" +
+    @"|::::::::::::::::::::::                                                                                                       ::::::::::::::::::::::|"+"\n" +
+    @"|::::::::::::::::::::::                                                                                                       ::::::::::::::::::::::|"+"\n" +
+    @"|::::::::::::::::::::::                                                                                                       ::::::::::::::::::::::|"+"\n" +
+    @"|::::::::::::::::::::::                                                                                                       ::::::::::::::::::::::|"+"\n" +
+    @"|::::::::::::::::::::::                                                                                                       ::::::::::::::::::::::|"+"\n" +
+    @"|::::::::::::::::::::::                                                                                                       ::::::::::::::::::::::|"+"\n" +
+    @"|::::::::::::::::::::::                                                                                                       ::::::::::::::::::::::|"+"\n" +
+    @"|::::::::::::::::::::::                                                                                                       ::::::::::::::::::::::|"+"\n" +
+    @"|::::::::::::::::::::::                                                                                                       ::::::::::::::::::::::|"+"\n" +
+    @"|::::::::::::::::::::::                                                                                                       ::::::::::::::::::::::|"+"\n" +
+    @"|::::::::::::::::::::::                                                                                                       ::::::::::::::::::::::|"+"\n" +
+    @"|::::::::::::::::::::::                                                                                                       ::::::::::::::::::::::|"+"\n" +
+    @"|::::::::::::::::::::::                                                                                                       ::::::::::::::::::::::|"+"\n" +
+    @"|::::::::::::::::::::::                                                                                                       ::::::::::::::::::::::|"+"\n" +
+    @"|:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::|"+"\n" +
+    @"|:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::|"+"\n" +
+    @"|:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::|"+"\n" +
+    @"|:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::|"+"\n" +
+    @"|:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::|"+"\n" +
+    @"|:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::|"+"\n" +
+    @" ___________________________________________________________________________________________________________________________________________________";
     public static void mostrarDialogos1(Estudiante jugador)
     {
         string mensaje;
         Console.Clear();
         Console.SetCursorPosition(0, 0);
         Console.Write(cielo1);
-        Console.SetCursorPosition(70, 18);
+        Console.SetCursorPosition(20, 18);
         Console.Write(persona);
 
         mensaje = $"Bienvenido {jugador.Datos.Nombre}!";
@@ -266,62 +285,72 @@ public class pantallaDialogos
     }
     public static void mostrarAtaques(Estudiante jugador, List<Ataques> ataques)
     {
+        if (jugador.Energia == 100)
+        {
+            Console.SetCursorPosition(45,16);
+            Console.Write("Usa una ultimate");
+        }
+        else
+        {
+            Console.SetCursorPosition(45,16);
+            Console.Write("Seleccionar el ataque");
+        }
         Console.Clear();
         Console.Write(combate);
         Ataques[] opciones = ataques.ToArray();
-        Console.SetCursorPosition(16, 19);
+        Console.SetCursorPosition(16, 18);
         Console.Write("0 - " + opciones[0].Nombre);
-        Console.SetCursorPosition(16, 20);
+        Console.SetCursorPosition(16, 19);
         Console.Write("Daño: " + opciones[0].Dano);
-        Console.SetCursorPosition(16, 21);
+        Console.SetCursorPosition(16, 20);
         Console.Write("Energia: " + -opciones[0].CostoEnergía);
-        Console.SetCursorPosition(16, 22);
+        Console.SetCursorPosition(16, 21);
         Console.Write("Estres: " + opciones[0].AumentoEstres);
 
-        Console.SetCursorPosition(64, 19);
+        Console.SetCursorPosition(64, 18);
         Console.Write("1 - " + opciones[1].Nombre);
-        Console.SetCursorPosition(64, 20);
+        Console.SetCursorPosition(64, 19);
         Console.Write("Daño: " + opciones[1].Dano);
-        Console.SetCursorPosition(64, 21);
+        Console.SetCursorPosition(64, 20);
         Console.Write("Energia: " + -opciones[1].CostoEnergía);
-        Console.SetCursorPosition(64, 22);
+        Console.SetCursorPosition(64, 21);
         Console.Write("Estres: " + opciones[1].AumentoEstres);
 
-        Console.SetCursorPosition(16, 24);
+        Console.SetCursorPosition(16, 23);
         Console.Write("2 - " + opciones[2].Nombre);
-        Console.SetCursorPosition(16, 25);
+        Console.SetCursorPosition(16, 24);
         Console.Write("Daño: " + opciones[2].Dano);
-        Console.SetCursorPosition(16, 26);
+        Console.SetCursorPosition(16, 25);
         Console.Write("Energia: " + -opciones[2].CostoEnergía);
-        Console.SetCursorPosition(16, 27);
+        Console.SetCursorPosition(16, 26);
         Console.Write("Estres: " + opciones[2].AumentoEstres);
 
-        Console.SetCursorPosition(64, 24);
+        Console.SetCursorPosition(64, 23);
         Console.Write("3 - " + opciones[3].Nombre);
-        Console.SetCursorPosition(64, 25);
+        Console.SetCursorPosition(64, 24);
         Console.Write("Daño: " + opciones[3].Dano);
-        Console.SetCursorPosition(64, 26);
+        Console.SetCursorPosition(64, 25);
         Console.Write("Energia: " + -opciones[3].CostoEnergía);
-        Console.SetCursorPosition(64, 27);
+        Console.SetCursorPosition(64, 26);
         Console.Write("Estres: " + opciones[3].AumentoEstres);
 
     }
 
     public static void mostrarStatsJugador(Estudiante Jugador)
     {
-        Console.SetCursorPosition(105, 17);
+        Console.SetCursorPosition(115, 17);
         Console.Write("Stats de " + Jugador.Datos.Nombre);
-        Console.SetCursorPosition(105, 19);
+        Console.SetCursorPosition(115, 19);
         Console.Write("Vidas: " + Escribir.vidas(Jugador.Vidas));
-        Console.SetCursorPosition(105, 20);
+        Console.SetCursorPosition(115, 20);
         Console.Write("Salud: " + Escribir.BarraDeStat(Jugador.Salud) + Jugador.Salud);
-        Console.SetCursorPosition(105, 21);
+        Console.SetCursorPosition(115, 21);
         Console.Write("Energia: " + Escribir.BarraDeStat(Jugador.Energia) + Jugador.Energia);
-        Console.SetCursorPosition(105, 22);
+        Console.SetCursorPosition(115, 22);
         Console.Write("Estres: " + Escribir.BarraDeStat(Jugador.Estres) + Jugador.Estres);
-        Console.SetCursorPosition(105, 23);
+        Console.SetCursorPosition(115, 23);
         Console.Write("Motivacion " + Escribir.BarraDeStat(Jugador.Motivacion) + Jugador.Motivacion);
-        Console.SetCursorPosition(105, 24);
+        Console.SetCursorPosition(115, 24);
         Console.Write("Conocimiento: " + Escribir.BarraDeStat(Jugador.Conocimiento) + Jugador.Conocimiento);
     }
 

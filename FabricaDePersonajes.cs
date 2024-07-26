@@ -6,11 +6,6 @@ using Personajes;
 
 public class FabricaDePersonajes
 {
-    private static readonly string[] nombres = {
-            "Juan", "María", "Pedro", "Ana", "Luis", "Sofía", "Carlos",
-            "Laura", "Miguel", "Valentina", "Diego", "Isabella", "Javier",
-            "Camila", "Alejandro", "Valeria", "José", "Emma", "Andrés", "Lucía"
-        };
     //creo un arreglo de clase materia que contiene el nombre de la materia y su ultimate
     private static readonly Materia[] materias = new[] {new Materia("Calculo","Derivada Mortal"),
                                                         new Materia("Fisica","Campo Electromagnético"),
@@ -50,19 +45,23 @@ public class FabricaDePersonajes
 
         return indices;
     }
-    public static List<JefeCatedra> crearBosses()
+    public static List<JefeCatedra> crearBosses(NombresGenerados nombresApi)
     {
         List<JefeCatedra> niveles = new List<JefeCatedra>();
         int[] indices = indicesAleatorios(10,10);
-
+        Result[] aux = nombresApi.Results.ToArray();
+        int maximo = 201;
+        int minimo = 100;
         for (int i = 0; i < 10; i++)
         {
-            string nombre = nombres[numeroAleatorio(0, 20)];
-            int edad = numeroAleatorio(25, 71);
+            string nombre = aux[i].Name.First;
+            int edad = aux[i].Dob.Age;
             Materia materia = materias[indices[i]];
             int energia = 0;
-            int salud = numeroAleatorio(100, 301);
+            int salud = numeroAleatorio(minimo, maximo);
             niveles.Add(new JefeCatedra(nombre, edad, materia, energia, salud));
+            minimo += 15;
+            maximo += 15;
         }
         return niveles;
     }
