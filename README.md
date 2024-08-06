@@ -1,4 +1,4 @@
-# El Guerrero Universatario
+<h1 align="center"> El Guerrero Universatario </h1>
 
 ### Proyecto Final Taller de Lenguajes 1
 
@@ -107,4 +107,18 @@ Eres un estudiante recién salido de la secundaria que no tiene idea de los peli
 | Problema imposible    | 20   | 15     |
 
 ## Capturas de pantalla
+
+![Pantalla inicial juego](https://github.com/user-attachments/assets/7fb31423-872f-4968-9763-b95fb9bb2e39)
+
+![Captura gameplay 1](https://github.com/user-attachments/assets/97918927-602d-47f6-a446-4966da103483)
+
+![Captura gameplay 2](https://github.com/user-attachments/assets/b442c17c-fee0-4263-a2fc-f12904c9ad35)
+
+![Captura gameplay 3](https://github.com/user-attachments/assets/0110ef55-977e-4548-aa24-69e0299c95c5)
+
+![Captura gameplay 4](https://github.com/user-attachments/assets/90c08591-6c42-4735-bbd4-7cf8e7dec5c7)
+
+## :heavy_check_mark: Bibliotecas utilizadas
+   -Naudio.wave: Parte de la biblioteca NAudio, que es una biblioteca de audio para .NET. El espacio de nombres NAudio.Wave contiene clases para trabajar con archivos de audio y dispositivos de audio, permitiendo grabar, reproducir y procesar audio
+   
 
