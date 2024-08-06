@@ -4,46 +4,50 @@
 
 ## Descripción del Juego
 
-**El Guerrero Universatario** es un juego de rol en consola donde te pones en la piel de un estudiante recién salido de la secundaria que deberá enfrentarse a los temidos jefes de cátedra para completar su primer año universitario. ¡Prepárate para una experiencia llena de desafíos y estrategia!
+**El Guerrero Universatario** es un juego de rol en consola donde te pones en la piel de un estudiante recién salido de la secundaria que deberá enfrentarse a los temidos jefes de cátedra para completar su primer año universitario. ¡Prepárate para una experiencia estresante en "los mejores años de tu vida"!
 
 ## Historia
 
-Eres un estudiante recién salido de la secundaria que no tiene idea de los peligros con los que se encontrará en los pasillos de la universidad. Comienzas a cursar y de repente te encuentras con los tan temidos jefes de cátedra. En este juego, deberás enfrentarte a los 10 jefes de cátedra para poder terminar tu año aprobando todo. Pero cuidado... no es tan sencillo como tu secundario. Aquí, el estrés es tu mayor enemigo; mientras más estrés tengas, menor es el daño que haces. A medida que pasas las materias, tu conocimiento aumentará.
+Acabas de llegar a la universidad a tu primera clase y ya te haces tu primer facuamigo. Éste te advierte de los peligros que te esperan. Comienzas a cursar y de repente te encuentras con los tan temidos jefes de cátedra. En este juego, deberás enfrentarte a los 10 jefes de cátedra para poder terminar tu año aprobando todo. Pero cuidado... no es tan sencillo como tu secundario. Aquí, el estrés es tu mayor enemigo, deberas medirte del mismo si no quieres terminar libre en alguna materia. A medida que pasas las materias, tu conocimiento aumentará. Preparate para poder afrontar el tan importante primer año ¡A estudiar!
 
 ## Cómo Jugar
 
 1. **Comienza el Juego:**
    - Ingresa tu nombre y tu edad y ¡a jugar!. Se te presentarán tus 10 enemigos a los cuales te enfrentaras!.
+   - Dentro del menu puedes cargar tu nombre y edad y los jefes contra los que habias peliado anteriormente.
+   - Puedes ver los records en la opcion "Records".
    
 2. **Ataques y Estrategia:**
-   :crossed_swords: Cada nivel comienza con una serie de ataques.
-   :crossed_swords: Dispones de 4 ataques: básicos y "ultimates".
-   :crossed_swords: La obtención de "ultimates" depende de tu suerte estudiantil.
-   :crossed_swords: Los ataques muestran daño, energía y estrés.
-   :crossed_swords: Los daños mostrados son base y se ajustan con el nivel.
-   :crossed_swords: El estrés afecta negativamente tu daño: a mayor estrés, menor daño.
-   :crossed_swords: El conocimiento adquirido aumenta tu daño.
-      > [!IMPORTANT]
-      >Los ataques de daño negativo te recuperan vida.
-      >Los ataques normales dañan al enemigo.
-      >Recupera energía y reduce estrés según la situación.
-      >La falta de energía o perder todas las vidas te lleva a "Game Over".
+   - :crossed_swords: Cada nivel comienza con una serie de ataques.
+   - :crossed_swords: Dispones de 4 ataques: básicos y "ultimates".
+   - :crossed_swords: La obtención de "ultimates" depende de tu suerte estudiantil.
+   - :crossed_swords: Los ataques muestran daño, energía y estrés.
+   - :crossed_swords: Los daños mostrados son base y se ajustan con el nivel.
+   - :crossed_swords: El estrés afecta negativamente tu daño: a mayor estrés, menor daño.
+   - :crossed_swords: El conocimiento adquirido aumenta tu daño.
+>[!IMPORTANT]
+>
+> - Los ataques de daño negativo te recuperan vida.
+> - Los ataques normales dañan al enemigo.
+> - Recupera energía y reduce estrés según la situación.
+> - Tener 0 energía o la falta de energia para un ataque te quita una vida.
 
-5. **Recibir Ataques:**
-   - Puedes recibir ataques básicos o especiales según tu estrés.
+3. **Recibir Ataques:**
+   - Puedes recibir ataques básicos aleatorios.
+   - Los ataques especiales pueden aparecer según tu estrés.
    - 100 de estrés asegura un ataque especial.
 
-      >  [!IMPORTANT]
-      >Todos los ataques tienen una probabilidad de ser críticos, realizando el doble de daño.
+>  [!IMPORTANT]
+> Todos los ataques tienen una probabilidad de ser críticos, realizando el doble de daño.
 
-7. **Condiciones de Victoria y Derrota:**
+4. **Condiciones de Victoria y Derrota:**
    - Gana quitando toda la vida al jefe.
    - Pierde si se te acaban las vidas.
    - Vencer al jefe restaura 2 vidas, estrés a 0 y energía al 100.
    - Derrota significa "Game Over".
 
-      > [!NOTE]
-      >Al vencer el último nivel, tus datos se guardarán en un récord histórico.
+> [!NOTE]
+>Al vencer el último nivel, tus datos se guardarán en un récord histórico.
 
 ## Ataques Básicos del Estudiante
 
