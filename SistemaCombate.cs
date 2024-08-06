@@ -150,7 +150,7 @@ public class Combate
         if (ataque.Danio < 0)
         {
             danioRealizado = 0;
-            Escribir.escribiryborrarCentrado(estudiante.Datos.Nombre + " recuperó" + -ataque.Danio + " de salud", 14);
+            Escribir.escribiryborrarCentrado(estudiante.Datos.Nombre + " recuperó " + -ataque.Danio + " de salud", 14);
             if (estudiante.Salud - ataque.Danio > 100)
             {
                 estudiante.Salud = 100;

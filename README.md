@@ -105,3 +105,6 @@ Eres un estudiante recién salido de la secundaria que no tiene idea de los peli
 | Cancelación de clase  | 5    | 0      |
 | Cancelación de consulta | 4  | 5      |
 | Problema imposible    | 20   | 15     |
+
+## Capturas de pantalla
+

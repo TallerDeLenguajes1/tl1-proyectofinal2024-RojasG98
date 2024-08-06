@@ -140,9 +140,8 @@ private static readonly Materia[] materias = new[] {
             string nombre = aux[i].Name.First;
             int edad = aux[i].Dob.Age;
             Materia materia = materias[indices[i]];
-            int energia = 0;
             int salud = numeroAleatorio(minimo, maximo);
-            niveles.Add(new JefeCatedra(nombre, edad, materia, energia, salud));
+            niveles.Add(new JefeCatedra(nombre, edad, materia, salud));
             minimo += 10;
             maximo += 10;
         }
@@ -187,7 +186,7 @@ private static readonly Materia[] materias = new[] {
                 Escribir.escribir("0.SI    1.NO",13);
                 do
                 {
-                    tecla = Console.ReadKey().KeyChar;
+                    tecla = Console.ReadKey(intercept: true).KeyChar;
                     switch (tecla)
                     {
                         case '0':
@@ -195,8 +194,9 @@ private static readonly Materia[] materias = new[] {
                             respuesta = 0;
                             break;
                         case '1':
-                            esNumeroValido = false;
+                            esNumeroValido = true;
                             respuesta = 1;
+                            Escribir.escribiryborrarCentrado("VOLVIENDO AL INGRESO DE DATOS...",14);
                             break;
                         default:
                             Escribir.escribiryborrarCentrado("INGRESE NUMERO VALIDO",14);

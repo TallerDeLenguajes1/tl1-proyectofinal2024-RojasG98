@@ -22,7 +22,7 @@ public class Estudiante
     private int conocimiento; //entero de valor 0-100 inicialmente un valor aleatorio entre 0-30
     private int energia; //entero de valor 0-100 inicialmente 100
     private int salud; //entero de valor 0-100 inicialmente 100 y se reinicia a 100 en cada batalla
-    private int vidas; //entero de valor 0-3 inicialmente 3 y no se recuperan
+    private int vidas; //entero de valor 0-2 inicialmente 2 y no se recuperan
 
     public Estudiante(DatosEstudiante datos,int estres,int conocimiento,
                         int energia,int salud,int vidas)
@@ -63,25 +63,22 @@ public class Materia
 
 public class JefeCatedra
 {
-    private string nombre; //generado aleatoriamente
-    private int edad; //generado aleatoriamente entre 25 y 70 años
-    private Materia materia; // generado aleatoriamente seleccionado de posiblemente un arreglo
-    private int energia; //valor entre 0-100 valor incial 0 aumenta segun los golpes criticos;
-    private int salud; //valor entre 0- 300 valor inicial aleatorio entre 100 y 300;
+    private string nombre; //Obtenido de la API
+    private int edad; //Obtenido de la API
+    private Materia materia; //Obtenido aleatoriamiente de una arreglo de materias
+    private int salud; //valor entre 520 y 110 segun el nivel;
 
-    public JefeCatedra(string nombre, int edad, Materia materia, int energia, int salud)
+    public JefeCatedra(string nombre, int edad, Materia materia, int salud)
     {
         this.Nombre = nombre;
         this.Edad = edad;
         this.Materia = materia;
-        this.Energia = energia;
         this.Salud = salud;
     }
 
     public string Nombre { get => nombre; set => nombre = value; }
     public int Edad { get => edad; set => edad = value; }
     public Materia Materia { get => materia; set => materia = value; }
-    public int Energia { get => energia; set => energia = value; }
     public int Salud { get => salud; set => salud = value; }
 }
 
