@@ -328,7 +328,7 @@ public class pantallaDialogos
         }
     }
     public static void pantallaGanador(){
-        var winnerMusic = new AudioFileReader(@"C:\Users\rojas\TallerLenguaje1\tl1-proyectofinal2024-RojasG98\audio\VictoryTheme.wav");
+        var winnerMusic = new AudioFileReader(@"audio\VictoryTheme.wav");
         var playWinnerMusic = new WaveOutEvent();
         playWinnerMusic.Init(winnerMusic);
         playWinnerMusic.Play();
@@ -357,7 +357,7 @@ public class pantallaDialogos
 public class Escribir
 {
     public static void escribiryborrar(string mensaje, int altura, int posX){
-        var speakSound = new AudioFileReader(@"C:\Users\rojas\TallerLenguaje1\tl1-proyectofinal2024-RojasG98\audio\speakingSound.wav");
+        var speakSound = new AudioFileReader(@"audio\speakingSound.wav");
         var playSpeakSound = new WaveOutEvent();
         playSpeakSound.Init(speakSound);
         
@@ -379,7 +379,7 @@ public class Escribir
     }
     public static void escribiryborrarCentrado(string mensaje, int altura)
     {
-        var speakSound = new AudioFileReader(@"C:\Users\rojas\TallerLenguaje1\tl1-proyectofinal2024-RojasG98\audio\speakingSound.wav");
+        var speakSound = new AudioFileReader(@"audio\speakingSound.wav");
         var playSpeakSound = new WaveOutEvent();
         playSpeakSound.Init(speakSound);
         
@@ -401,7 +401,7 @@ public class Escribir
     }
     public static void escribir(string mensaje, int altura)
     {
-        var speakSound = new AudioFileReader(@"C:\Users\rojas\TallerLenguaje1\tl1-proyectofinal2024-RojasG98\audio\speakingSound.wav");
+        var speakSound = new AudioFileReader(@"audio\speakingSound.wav");
         var playSpeakSound = new WaveOutEvent();
         playSpeakSound.Init(speakSound);
         for (int i = 0; i <= mensaje.Length; i++)

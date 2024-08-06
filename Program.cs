@@ -30,11 +30,11 @@ string rutaHistorial = "./json/historial.json";
 Estudiante jugador = null;
 List<JefeCatedra> jefes = null;
 //creamos el objeto reproductor y el objeto que contiene la cancion de menu
-var menuMusic = new AudioFileReader(@"C:\Users\rojas\TallerLenguaje1\tl1-proyectofinal2024-RojasG98\audio\menuMusic.wav");
+var menuMusic = new AudioFileReader(@"audio\menuMusic.wav");
 var playMenuMusic = new WaveOutEvent();
 
 //creamos el objeto reproductor y el objeto que contiene la cancion cuando se selecciona una opcion
-var selectSound = new AudioFileReader(@"C:\Users\rojas\TallerLenguaje1\tl1-proyectofinal2024-RojasG98\audio\selectionSound.wav");
+var selectSound = new AudioFileReader(@"audio\selectionSound.wav");
 var playSelectSound = new WaveOutEvent();
 //dentro de este while esta todo el menu para poder volver en caso de entrar a los records
 bool salir = false;
@@ -152,9 +152,9 @@ while (!salir)
             break;
     }
 }
-var prologueMusic = new AudioFileReader(@"C:\Users\rojas\TallerLenguaje1\tl1-proyectofinal2024-RojasG98\audio\prologue.wav");
+var prologueMusic = new AudioFileReader(@"audio\prologue.wav");
 var playPrologueMusic = new WaveOutEvent();
-var cinematicMusic = new AudioFileReader(@"C:\Users\rojas\TallerLenguaje1\tl1-proyectofinal2024-RojasG98\audio\cinematicMusic.wav");
+var cinematicMusic = new AudioFileReader(@"audio\cinematicMusic.wav");
 var playCinematicMusic = new WaveOutEvent();
 Console.Clear();
 if (jugador != null)
@@ -177,14 +177,14 @@ if (jugador != null)
 JefeCatedra[] niveles = jefes.ToArray();
 //inicializamos la bandera en 0
 bandera = 0;
-var hitAudio = new AudioFileReader(@"C:\Users\rojas\TallerLenguaje1\tl1-proyectofinal2024-RojasG98\audio\hitSound.wav");
+var hitAudio = new AudioFileReader(@"audio\hitSound.wav");
 var playHitSound = new WaveOutEvent();
 playHitSound.Init(hitAudio);
 
 // recorreremos los niveles en orden
 for (int i = 0; i < 10; i++)
 {
-    var battleMusic = new AudioFileReader(@"C:\Users\rojas\TallerLenguaje1\tl1-proyectofinal2024-RojasG98\audio\BattleMusic.wav");
+    var battleMusic = new AudioFileReader(@"audio\BattleMusic.wav");
     var playBattleMusic = new WaveOutEvent();
     bool esBienvenida = true;
     playBattleMusic.Init(battleMusic);
@@ -304,7 +304,7 @@ for (int i = 0; i < 10; i++)
     playBattleMusic.Stop();
     if (jugador.Vidas == 0)
     {
-        var gameOverMusic = new AudioFileReader(@"C:\Users\rojas\TallerLenguaje1\tl1-proyectofinal2024-RojasG98\audio\GameOver.wav");
+        var gameOverMusic = new AudioFileReader(@"audio\GameOver.wav");
         var playgameOverMusic = new WaveOutEvent();
         //volver al menu principal
         playgameOverMusic.Init(gameOverMusic);
@@ -319,7 +319,7 @@ for (int i = 0; i < 10; i++)
     {
         if (niveles[i].Salud == 0)
         {
-            var victoryMusic = new AudioFileReader(@"C:\Users\rojas\TallerLenguaje1\tl1-proyectofinal2024-RojasG98\audio\levelComplete.wav");
+            var victoryMusic = new AudioFileReader(@"audio\levelComplete.wav");
             var playvictoryMusic = new WaveOutEvent();
             playvictoryMusic.Init(victoryMusic);
             playvictoryMusic.Play();
