@@ -236,7 +236,7 @@ public class pantallaDialogos
     }
 
 
-    public static void mostrarAtaques(Estudiante jugador, List<Ataques> ataques)
+    public static void mostrarAtaques(List<Ataques> ataques)
     {
         Console.Clear();
         Console.Write(combate);
@@ -246,7 +246,7 @@ public class pantallaDialogos
         Console.SetCursorPosition(16, 19);
         Console.Write("Daño: " + opciones[0].Danio);
         Console.SetCursorPosition(16, 20);
-        Console.Write("Energia: " + -opciones[0].CostoEnergía);
+        Console.Write("Energia: " + -opciones[0].CostoEnergia);
         Console.SetCursorPosition(16, 21);
         Console.Write("Estres: " + opciones[0].AumentoEstres);
 
@@ -255,7 +255,7 @@ public class pantallaDialogos
         Console.SetCursorPosition(64, 19);
         Console.Write("Daño: " + opciones[1].Danio);
         Console.SetCursorPosition(64, 20);
-        Console.Write("Energia: " + -opciones[1].CostoEnergía);
+        Console.Write("Energia: " + -opciones[1].CostoEnergia);
         Console.SetCursorPosition(64, 21);
         Console.Write("Estres: " + opciones[1].AumentoEstres);
 
@@ -264,7 +264,7 @@ public class pantallaDialogos
         Console.SetCursorPosition(16, 24);
         Console.Write("Daño: " + opciones[2].Danio);
         Console.SetCursorPosition(16, 25);
-        Console.Write("Energia: " + -opciones[2].CostoEnergía);
+        Console.Write("Energia: " + -opciones[2].CostoEnergia);
         Console.SetCursorPosition(16, 26);
         Console.Write("Estres: " + opciones[2].AumentoEstres);
 
@@ -280,7 +280,7 @@ public class pantallaDialogos
         Console.SetCursorPosition(64, 24);
         Console.Write("Daño: " + opciones[3].Danio);
         Console.SetCursorPosition(64, 25);
-        Console.Write("Energia: " + -opciones[3].CostoEnergía);
+        Console.Write("Energia: " + -opciones[3].CostoEnergia);
         Console.SetCursorPosition(64, 26);
         Console.Write("Estres: " + opciones[3].AumentoEstres);
 
@@ -342,7 +342,7 @@ public class pantallaDialogos
         Console.SetCursorPosition(20, 18);
         Console.Write(persona);
         Escribir.escribiryborrar($"Bien.. ya cumplí mi mision aquí", 23, 65);
-        Escribir.escribiryborrarCentrado("De que mision esta hablando? si no usted no hizo nada", 27);
+        Escribir.escribiryborrar("De que mision esta hablando? si no usted no hizo nada", 27,65);
         Escribir.escribiryborrar($"Ah no?", 23, 65);
         playWinnerMusic.Stop();
         Console.Clear();

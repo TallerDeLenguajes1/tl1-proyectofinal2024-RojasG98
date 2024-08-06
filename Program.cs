@@ -196,20 +196,20 @@ for (int i = 0; i < 10; i++)
     Console.Clear();
     do
     {
-        List<Ataques> ataques = Combate.ataquesDelTurno(jugador);
+        List<Ataques> ataques = Combate.ataquesDelTurno();
         Ataques[] ataquesAux = ataques.ToArray();
         // si no tienes suficiente energia para atacar pierdes una vida
         bool tieneEnergia = true;
         for (int j = 0; j < ataquesAux.Length; j++)
         {
-            if (ataquesAux[j].CostoEnergía > jugador.Energia)
+            if (ataquesAux[j].CostoEnergia > jugador.Energia)
             {
                 tieneEnergia = false;
             }
         }
         if (!tieneEnergia)
         {
-            pantallaDialogos.mostrarAtaques(jugador, ataques);
+            pantallaDialogos.mostrarAtaques( ataques);
             pantallaDialogos.mostrarStatsJugador(jugador, nroNivel, niveles[i].Materia.Nombre);
             pantallaDialogos.mostrarVidaBoss(niveles[i]);
             Escribir.escribiryborrarCentrado("No tienes energia suficiente para atacar", 14);
@@ -221,7 +221,7 @@ for (int i = 0; i < 10; i++)
             do
             {
                 //mostramos pantalla de combate y las estadisticas
-                pantallaDialogos.mostrarAtaques(jugador, ataques);
+                pantallaDialogos.mostrarAtaques(ataques);
                 if (esBienvenida)
                 {
                     for (int j = 0; j < 3; j++)
@@ -260,7 +260,7 @@ for (int i = 0; i < 10; i++)
                 } while (bandera != 1);
                 bandera = 0;
                 //verificamos que la energia es sificiente para realizar el ataque
-                if (jugador.Energia >= ataquesAux[int.Parse(tecla.ToString())].CostoEnergía)
+                if (jugador.Energia >= ataquesAux[int.Parse(tecla.ToString())].CostoEnergia)
                 {
                     bandera = 1;
                 }
@@ -284,7 +284,7 @@ for (int i = 0; i < 10; i++)
             }
             //borramos la barra de vida del boss y escribimos la actualizada
             Console.Clear();
-            pantallaDialogos.mostrarAtaques(jugador, ataques);
+            pantallaDialogos.mostrarAtaques(ataques);
             pantallaDialogos.mostrarStatsJugador(jugador, nroNivel, niveles[i].Materia.Nombre);
             pantallaDialogos.mostrarVidaBoss(niveles[i]);
             //revisamos que el boss este vivo en caso afirmativo procede a atacar

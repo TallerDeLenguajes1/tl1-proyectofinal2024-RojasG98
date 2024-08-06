@@ -5,24 +5,24 @@ using Personajes;
 public class Ataques
 {
     private string nombre;
-    private int dano;
-    private int costoEnergía;
+    private int danio;
+    private int costoEnergia;
     private int aumentoEstres;
     private string dialogo;
 
-    public Ataques(string nombre, int dano, int costoEnergía, int aumentoEstres, string dialogo)
+    public Ataques(string nombre, int danio, int costoEnergia, int aumentoEstres, string dialogo)
     {
         this.Nombre = nombre;
-        this.Danio = dano;
-        this.CostoEnergía = costoEnergía;
+        this.Danio = danio;
+        this.CostoEnergia = costoEnergia;
         this.AumentoEstres = aumentoEstres;
         this.Dialogo = dialogo;
 
     }
 
     public string Nombre { get => nombre; set => nombre = value; }
-    public int Danio { get => dano; set => dano = value; }
-    public int CostoEnergía { get => costoEnergía; set => costoEnergía = value; }
+    public int Danio { get => danio; set => danio = value; }
+    public int CostoEnergia { get => costoEnergia; set => costoEnergia = value; }
     public int AumentoEstres { get => aumentoEstres; set => aumentoEstres = value; }
     public string Dialogo { get => dialogo; set => dialogo = value; }
 }
@@ -94,10 +94,10 @@ public class Combate
         //Disminuimos el daño realizado en base a nuestro estres 
         double danoAjustado = danoBase * (1 - porcentajeEstres);
         //Calculamos el daño final teniendo en cuenta un bufeo al avanzar de nivel
-        double danoReal = danoAjustado + (danoAjustado * porcentajeConocimiento);
+        double danoReal = danoAjustado * (1 + porcentajeConocimiento);
 
         // creamos un numero aleatorio si es menor a la probabilidad es un golpe critico
-        bool esGolpeCritico = new Random().NextDouble() < Combate.probCritico;
+        bool esGolpeCritico = new Random().NextDouble() < probCritico;
         if (esGolpeCritico)
         {
             cantCrit++;
@@ -128,20 +128,20 @@ public class Combate
         Escribir.escribiryborrarCentrado(estudiante.Datos.Nombre + " uso " + ataque.Nombre, 14);
         Escribir.escribiryborrarCentrado(estudiante.Datos.Nombre + ": " + ataque.Dialogo, 14);
 
-        if (estudiante.Energia - ataque.CostoEnergía <= 0)
+        if (estudiante.Energia - ataque.CostoEnergia <= 0)
         {
             estudiante.Energia = 0;
         }
         else
         {
-            if (estudiante.Energia - ataque.CostoEnergía > 100)
+            if (estudiante.Energia - ataque.CostoEnergia > 100)
             {
                 estudiante.Energia = 100;
 
             }
             else
             {
-                estudiante.Energia -= ataque.CostoEnergía;
+                estudiante.Energia -= ataque.CostoEnergia;
 
             }
 
@@ -244,7 +244,7 @@ public class Combate
 
     }
 
-    public static List<Ataques> ataquesDelTurno(Estudiante estudiante)
+    public static List<Ataques> ataquesDelTurno()
     {
         List<Ataques> ataques = new List<Ataques>();
         bool hayAtaqueEspecial = new Random().NextDouble() < 0.3;
@@ -257,18 +257,18 @@ public class Combate
                 int nroAtaque = indicesBasicos[i];
                 string Nombre = AtaquesBasicos.BasicosEstudiante[nroAtaque].Nombre;
                 int Dano = AtaquesBasicos.BasicosEstudiante[nroAtaque].Danio;
-                int CostoEnergía = AtaquesBasicos.BasicosEstudiante[nroAtaque].CostoEnergía;
+                int CostoEnergia = AtaquesBasicos.BasicosEstudiante[nroAtaque].CostoEnergia;
                 int AumentoEstres = AtaquesBasicos.BasicosEstudiante[nroAtaque].AumentoEstres;
                 string dialogo = AtaquesBasicos.BasicosEstudiante[nroAtaque].Dialogo;
-                ataques.Add(new Ataques(Nombre, Dano, CostoEnergía, AumentoEstres, dialogo));
+                ataques.Add(new Ataques(Nombre, Dano, CostoEnergia, AumentoEstres, dialogo));
             }
             int indiceUltimate = FabricaDePersonajes.numeroAleatorio(0, 4);
             string NombreUltimate = AtaquesEspeciales.UltiEstudiante[indiceUltimate].Nombre;
             int DanoUltimate = AtaquesEspeciales.UltiEstudiante[indiceUltimate].Danio;
-            int CostoEnergíaUltimate = AtaquesEspeciales.UltiEstudiante[indiceUltimate].CostoEnergía;
+            int CostoEnergiaUltimate = AtaquesEspeciales.UltiEstudiante[indiceUltimate].CostoEnergia;
             int AumentoEstresUltimate = AtaquesEspeciales.UltiEstudiante[indiceUltimate].AumentoEstres;
             string dialogoUltimate = AtaquesEspeciales.UltiEstudiante[indiceUltimate].Dialogo;
-            ataques.Add(new Ataques(NombreUltimate, DanoUltimate, CostoEnergíaUltimate, AumentoEstresUltimate, dialogoUltimate));
+            ataques.Add(new Ataques(NombreUltimate, DanoUltimate, CostoEnergiaUltimate, AumentoEstresUltimate, dialogoUltimate));
         }
         else
         {
@@ -279,10 +279,10 @@ public class Combate
                 nroAtaque = indices[i];
                 string Nombre = AtaquesBasicos.BasicosEstudiante[nroAtaque].Nombre;
                 int Dano = AtaquesBasicos.BasicosEstudiante[nroAtaque].Danio;
-                int CostoEnergía = AtaquesBasicos.BasicosEstudiante[nroAtaque].CostoEnergía;
+                int CostoEnergia = AtaquesBasicos.BasicosEstudiante[nroAtaque].CostoEnergia;
                 int AumentoEstres = AtaquesBasicos.BasicosEstudiante[nroAtaque].AumentoEstres;
                 string dialogo = AtaquesBasicos.BasicosEstudiante[nroAtaque].Dialogo;
-                ataques.Add(new Ataques(Nombre, Dano, CostoEnergía, AumentoEstres, dialogo));
+                ataques.Add(new Ataques(Nombre, Dano, CostoEnergia, AumentoEstres, dialogo));
             }
         }
 

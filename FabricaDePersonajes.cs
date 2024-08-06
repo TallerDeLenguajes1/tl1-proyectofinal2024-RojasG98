@@ -112,13 +112,16 @@ private static readonly Materia[] materias = new[] {
     public static int[] indicesAleatorios(int cantNumeros,int totalOpciones)
     {
         var random = new Random();
+        //creo un arreglo de int de tamaño de la cantidad de indices aleatorios quiero
         int[] indices = new int[cantNumeros];
+        // creo una lista con los numeros disponibles
         List<int> numerosDisponibles = new List<int>();
+        //agrego a esa lista numeros del 1 al numero las opciones de indice que tengo por ejemplo solo 4 opciones elegibles
         for (int i = 0; i < totalOpciones; i++)
         {
             numerosDisponibles.Add(i);
         }
-
+        //obtengo un valor aleatorio de la lista y luego lo borro para no repetir
         for (int i = 0; i < cantNumeros; i++)
         {
             int index = random.Next(numerosDisponibles.Count);
