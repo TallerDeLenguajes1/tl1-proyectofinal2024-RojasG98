@@ -367,7 +367,7 @@ public class Escribir
             Console.SetCursorPosition(posX, altura);
             Console.Write(mensaje.Substring(0, i)); // Mostrar el string progresivamente
             playSpeakSound.Play();
-            Thread.Sleep(20);
+            Thread.Sleep(50);
         }
         Thread.Sleep(1500);
         for (int i = 0; i <= mensaje.Length; i++)
@@ -389,7 +389,7 @@ public class Escribir
             Console.SetCursorPosition(74-(mensaje.Length/2), altura);
             Console.Write(mensaje.Substring(0, i)); // Mostrar el string progresivamente
             playSpeakSound.Play();
-            Thread.Sleep(20);
+            Thread.Sleep(50);
         }
         Thread.Sleep(1500);
         for (int i = 0; i <= mensaje.Length; i++)
@@ -410,7 +410,7 @@ public class Escribir
             Console.SetCursorPosition(74-(mensaje.Length/2), altura);
             Console.Write(mensaje.Substring(0, i)); // Mostrar el string progresivamente
             playSpeakSound.Play();
-            Thread.Sleep(20);
+            Thread.Sleep(50);
         }
     }
     public static void centrarCadena(string mensaje, int altura)
