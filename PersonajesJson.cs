@@ -3,6 +3,7 @@
 using System.Runtime.CompilerServices;
 using Personajes;
 using System.Text.Json;
+using Pantallas;
 
 public class PersonajesJson{
     public void GuardarJefes(List<JefeCatedra> jefes,string nombreArchivo){
@@ -37,7 +38,7 @@ public class PersonajesJson{
 }
 
 public class HistorialJson{
-    public void GuardarGanador(Estudiante ganador,infoPartida informacion,string nombreArchivo){
+    public void GuardarGanador(string ganador,infoPartida informacion,string nombreArchivo){
         List<Ganadores> historial = new List<Ganadores>();
 
         if (Existe(nombreArchivo))
@@ -55,11 +56,15 @@ public class HistorialJson{
     public List<Ganadores> LeerGanadores(string nombreArchivo){
         if (!Existe(nombreArchivo))
         {
-            throw new FileNotFoundException($"El archivo {nombreArchivo} no existe o está vacío.");
+            Escribir.escribiryborrarCentrado("No hay ganadores :(",15);
+            return null; 
         }
-
-        string jsonString = File.ReadAllText(nombreArchivo);
-        return JsonSerializer.Deserialize<List<Ganadores>>(jsonString);
+        else
+        {
+            string jsonString = File.ReadAllText(nombreArchivo);
+            return JsonSerializer.Deserialize<List<Ganadores>>(jsonString);
+        }
+        
     }
     public bool Existe(string nombreArchivo){
         return File.Exists(nombreArchivo) && new FileInfo(nombreArchivo).Length > 0;
@@ -67,18 +72,18 @@ public class HistorialJson{
 }
 
 public class Ganadores{
-    private Estudiante ganador;
+    private string nombre;
     private infoPartida informacion;
     private DateTime fecha;
-
-    public Ganadores(Estudiante ganador, infoPartida informacion,DateTime fecha)
+    public Ganadores() { }
+    public Ganadores(string Nombre, infoPartida Informacion,DateTime Fecha)
     {
-        this.Ganador = ganador;
-        this.Informacion = informacion;
-        this.Fecha = fecha;
+        this.Nombre = Nombre;
+        this.Informacion = Informacion;
+        this.Fecha = Fecha;
     }
 
-    public Estudiante Ganador { get => ganador; set => ganador = value; }
+    public string Nombre { get => nombre; set => nombre = value; }
     public infoPartida Informacion { get => informacion; set => informacion = value; }
     public DateTime Fecha { get => fecha; set => fecha = value; }
 }

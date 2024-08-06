@@ -1,5 +1,4 @@
 using System.Text.Json.Serialization;
- 
 // Root myDeserializedClass = JsonSerializer.Deserialize<Root>(myJsonResponse);
     public class Dob
     {
@@ -8,21 +7,6 @@ using System.Text.Json.Serialization;
 
         [JsonPropertyName("age")]
         public int Age { get; set; }
-    }
-
-    public class Info
-    {
-        [JsonPropertyName("seed")]
-        public string Seed { get; set; }
-
-        [JsonPropertyName("results")]
-        public int Results { get; set; }
-
-        [JsonPropertyName("page")]
-        public int Page { get; set; }
-
-        [JsonPropertyName("version")]
-        public string Version { get; set; }
     }
 
     public class Name
@@ -50,8 +34,5 @@ using System.Text.Json.Serialization;
     {
         [JsonPropertyName("results")]
         public List<Result> Results { get; set; }
-
-        [JsonPropertyName("info")]
-        public Info Info { get; set; }
     }
 

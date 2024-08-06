@@ -19,18 +19,16 @@ public class Estudiante
 {
     private DatosEstudiante datos;
     private int estres; //entero de valor 0-100 inicialmente 0
-    private int motivacion; //entero de valor 0-100 inicialmente 100
     private int conocimiento; //entero de valor 0-100 inicialmente un valor aleatorio entre 0-30
     private int energia; //entero de valor 0-100 inicialmente 100
     private int salud; //entero de valor 0-100 inicialmente 100 y se reinicia a 100 en cada batalla
     private int vidas; //entero de valor 0-3 inicialmente 3 y no se recuperan
 
-    public Estudiante(DatosEstudiante datos,int estres, int motivacion,int conocimiento,
+    public Estudiante(DatosEstudiante datos,int estres,int conocimiento,
                         int energia,int salud,int vidas)
     {
         this.Datos = datos;
         this.Estres = estres;
-        this.Motivacion = motivacion;
         this.Conocimiento = conocimiento;
         this.Energia = energia;
         this.Salud = salud;
@@ -39,7 +37,6 @@ public class Estudiante
 
 
     public int Estres { get => estres; set => estres = value; }
-    public int Motivacion { get => motivacion; set => motivacion = value; }
     public int Conocimiento { get => conocimiento; set => conocimiento = value; }
     public int Energia { get => energia; set => energia = value; }
     public int Salud { get => salud; set => salud = value; }
@@ -50,15 +47,17 @@ public class Estudiante
 public class Materia
 {
     private string nombre;
-
     private string ataqueEspecial;
-
+    private string[] dialogoBienvenida;
     public string Nombre { get => nombre; set => nombre = value; }
     public string AtaqueEspecial { get => ataqueEspecial; set => ataqueEspecial = value; }
-    public Materia(string nombre, string ataqueEspecial)
+    public string[] DialogoBienvenida { get => dialogoBienvenida; set => dialogoBienvenida = value; }
+
+    public Materia(string nombre, string ataqueEspecial, string[] dialogoBienvenida)
     {
-        this.nombre = nombre;
-        this.ataqueEspecial = ataqueEspecial;
+        this.Nombre = nombre;
+        this.AtaqueEspecial = ataqueEspecial;
+        this.DialogoBienvenida = dialogoBienvenida;
     }
 }
 
@@ -92,6 +91,7 @@ public class infoPartida{
 
     private int cantCriticosRealizados;
 
+    public infoPartida() {}
     public infoPartida(int danReal, int danRecib, int cantCrit)
     {
         this.DanioRealizado = danReal;
