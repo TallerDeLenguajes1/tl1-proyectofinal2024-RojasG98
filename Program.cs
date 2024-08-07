@@ -53,8 +53,7 @@ while (!salir)
         //muestro el menu
         Console.Clear();
         pantallaPrincipal.mostrarMenu();
-        tecla = Console.ReadKey().KeyChar;
-        Console.Clear();
+        tecla = Console.ReadKey(intercept: true).KeyChar;
         if (tecla == '1' || tecla == '2' || tecla == '3' || tecla == '4')
         {
             playSelectSound.Init(selectSound);
@@ -89,6 +88,7 @@ while (!salir)
                 archivos.GuardarJefes(jefes, rutaJefes);
                 jugador = FabricaDePersonajes.leerDatosJugador();
                 archivos.GuardarJugador(jugador, rutaJugador);
+                salir = true;
             }
             else
             {
@@ -102,13 +102,13 @@ while (!salir)
                     archivos.GuardarJefes(jefes, rutaJefes);
                     jugador = FabricaDePersonajes.leerDatosJugador();
                     archivos.GuardarJugador(jugador, rutaJugador);
+                    salir = true;
                 }
                 catch (Exception error)
                 {
                     Console.WriteLine($"Error al crear nueva partida{error.Message}");
                 }
             }
-            salir = true;
             break;
         case '2':
             //en esta opcion leemos los json ya guardados
@@ -116,17 +116,15 @@ while (!salir)
             {
                 jefes = archivos.LeerJefes(rutaJefes);
                 jugador = archivos.LeerJugador(rutaJugador);
+                salir = true;
             }
             else
             {
-                //no existen los archivos damos error y cerramos la consola
+                //no existen los archivos damos error y volvemos al menu principal
                 Console.SetCursorPosition(58, 15); // Establecer la posición del cursor en el medio
                 Console.WriteLine("ERROR no hay una partida guardada");
                 Thread.Sleep(2000);
-                Environment.Exit(0);
-
             }
-            salir = true;
             break;
         case '3':
             //leemos el json de historial
@@ -143,7 +141,7 @@ while (!salir)
                 Escribir.escribir("Fecha:" + dateTime.ToString("dd '/' MM '/' yy", CultureInfo.CreateSpecificCulture("es-AR")), altura + 4);
                 altura += 7;
             }
-            Escribir.centrarCadena("Presiona Cualquier tecla para salir",altura);
+            Escribir.centrarCadena("Presiona Cualquier tecla para salir", altura);
             Console.ReadKey(intercept: true);//intercept: true hace que no se vea lo si presiono la tecla
             break;
         case '4':
@@ -174,11 +172,15 @@ if (jugador != null)
     playCinematicMusic.Stop();
     playCinematicMusic.Dispose();
 }
+else
+{
+    Escribir.centrarCadena("Error en la ejecucion del juego", 15);
+    Thread.Sleep(2000);
+    Environment.Exit(0);
+}
 
 //creamos un arreglo auxiliar para poder recorrer los niveles
 JefeCatedra[] niveles = jefes.ToArray();
-//inicializamos la bandera en 0
-bandera = 0;
 var hitAudio = new AudioFileReader(@"audio\hitSound.wav");
 var playHitSound = new WaveOutEvent();
 playHitSound.Init(hitAudio);
@@ -213,10 +215,11 @@ for (int i = 0; i < 10; i++)
         }
         if (!tieneEnergia)
         {
-            pantallaDialogos.mostrarAtaques( ataques);
+            pantallaDialogos.mostrarAtaques(ataques);
             pantallaDialogos.mostrarStatsJugador(jugador, nroNivel, niveles[i].Materia.Nombre);
             pantallaDialogos.mostrarVidaBoss(niveles[i]);
             Escribir.escribiryborrarCentrado("No tienes energia suficiente para atacar", 14);
+            Thread.Sleep(1500);
             Escribir.escribiryborrarCentrado("Pierdes una vida!", 14);
             jugador.Vidas--;
         }
@@ -296,7 +299,7 @@ for (int i = 0; i < 10; i++)
             {
 
                 Escribir.escribir(niveles[i].Nombre + " te Atacará", 14);
-                Combate.recibirAtaque(jugador, niveles[i], i + 1, ref danioRecibido);
+                Combate.recibirAtaque(jugador, niveles[i], nroNivel, ref danioRecibido);
                 hitAudio.CurrentTime = TimeSpan.FromSeconds(0);
                 playHitSound.Play();
                 Thread.Sleep(1000);
@@ -310,7 +313,6 @@ for (int i = 0; i < 10; i++)
     {
         var gameOverMusic = new AudioFileReader(@"audio\GameOver.wav");
         var playgameOverMusic = new WaveOutEvent();
-        //volver al menu principal
         playgameOverMusic.Init(gameOverMusic);
         playgameOverMusic.Play();
         pantallaDialogos.gameOver();
@@ -340,7 +342,7 @@ for (int i = 0; i < 10; i++)
                 jugador.Conocimiento += conocimiento;
             }
             Escribir.escribiryborrarCentrado("Ahora eres mas sabio tu conomiento es de : " + jugador.Conocimiento, 15);
-            //reiniciamos a 50 la energia, a 0 el estres y 3 vidas
+            //reiniciamos a 200 la energia, a 0 el estres y 3 vidas
             jugador.Salud = 100;
             jugador.Energia = 100;
             jugador.Estres = 0;
