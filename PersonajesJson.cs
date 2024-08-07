@@ -56,7 +56,7 @@ public class HistorialJson{
     public List<Ganadores> LeerGanadores(string nombreArchivo){
         if (!Existe(nombreArchivo))
         {
-            Escribir.escribiryborrarCentrado("No hay ganadores :(",15);
+            Escribir.escribiryborrarCentrado("Recursaron todos :(",15);
             return null; 
         }
         else
@@ -75,6 +75,8 @@ public class Ganadores{
     private string nombre;
     private infoPartida informacion;
     private DateTime fecha;
+
+    //necesario para poder guardar los ganadores en el historial
     public Ganadores() { }
     public Ganadores(string Nombre, infoPartida Informacion,DateTime Fecha)
     {

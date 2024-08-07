@@ -157,6 +157,7 @@ var playPrologueMusic = new WaveOutEvent();
 var cinematicMusic = new AudioFileReader(@"audio\cinematicMusic.wav");
 var playCinematicMusic = new WaveOutEvent();
 Console.Clear();
+
 if (jugador != null)
 {
     playPrologueMusic.Init(prologueMusic);
@@ -173,6 +174,7 @@ if (jugador != null)
     playCinematicMusic.Stop();
     playCinematicMusic.Dispose();
 }
+
 //creamos un arreglo auxiliar para poder recorrer los niveles
 JefeCatedra[] niveles = jefes.ToArray();
 //inicializamos la bandera en 0
@@ -180,6 +182,8 @@ bandera = 0;
 var hitAudio = new AudioFileReader(@"audio\hitSound.wav");
 var playHitSound = new WaveOutEvent();
 playHitSound.Init(hitAudio);
+
+
 
 // recorreremos los niveles en orden
 for (int i = 0; i < 10; i++)
